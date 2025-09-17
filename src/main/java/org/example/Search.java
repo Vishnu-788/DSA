@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class Search {
     public static int linearSearch(List<Integer> list, int target){
         for(int i = 0; i < list.size(); i++) {
             if(list.get(i) == target){
