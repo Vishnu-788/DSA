@@ -65,10 +65,45 @@ public class Sort {
 
         }
     }
+    /*
+    -> Uses divide and conquer.
+    -> Recursion.
+    -> O(n log n).
+     */
+    public static void quickSort(List<Integer> list, int low, int high){
+        if(low<high){
+            int pi = partition(list, low, high);
+            quickSort(list, low, pi-1);
+            quickSort(list, pi+1 , high);
+        }
+    }
+    private static int partition(List<Integer> list, int low, int high){
+        int i = low-1;
+        int pi = list.get(high);
+        for(int j=low; j<=high; j++){
+            if(list.get(j) < pi){
+                i++;
+                swap(list, i, j);
+            }
+        }
+        swap(list, i+1, high);
+        return i+1;
+    }
+    /*
+    Merge Sort
+     */
+    public static void mergeSort(List<Integer> list, int left, int right){
+        if(left<right){
+            int mid = (left+right) / 2;
+            mergeSort(list, left, mid);
+            mergeSort(list, mid+1, right);
+        }
+
+    }
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>(List.of(22, 44, 64, 33, 13, 66, 74, 32, 65, 90));
+        List<Integer> list = new ArrayList<>(List.of(22, 44, 64, 33, 13, 66, 74, 32, 65, 90, 13));
         System.out.println("Before sorting: " + list);
-        insertionSort(list);
+        quickSort(list, 0, list.size()-1);
         System.out.println("After sorting: " + list);
 
     }
